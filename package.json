@@ -1,0 +1,24 @@
+{
+  "name": "word-game",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Adeonir Kohl <me@adeonir.dev>",
+  "scripts": {
+    "predev": "rimraf .parcel-cache dist",
+    "dev": "parcel public/index.html",
+    "build": "parcel build public/index.html",
+    "new-component": "new-component"
+  },
+  "dependencies": {
+    "eslint": "8.55.0",
+    "eslint-config-react-app": "7.0.1",
+    "new-component": "5.0.2",
+    "parcel": "2.10.3",
+    "prettier": "3.1.0",
+    "process": "0.11.10",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rimraf": "5.0.5"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

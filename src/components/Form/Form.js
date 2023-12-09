@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Form() {
-  const [guess, setGuess] = React.useState('')
+function Form({ onAddGuess }) {
+  const [attempt, setAttempt] = React.useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.info({ guess })
-    setGuess('')
+    onAddGuess(attempt)
+    setAttempt('')
   }
 
   return (
@@ -20,9 +20,9 @@ function Form() {
         maxLength={5}
         pattern="[a-zA-Z]{5}"
         title="A 5 letter word"
-        value={guess}
+        value={attempt}
         onChange={(event) => {
-          setGuess(event.target.value.toUpperCase())
+          setAttempt(event.target.value.toUpperCase())
         }}
       />
     </form>

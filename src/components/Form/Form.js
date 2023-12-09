@@ -18,6 +18,8 @@ function Form() {
         required
         minLength={5}
         maxLength={5}
+        pattern="[a-zA-Z]{5}"
+        title="A 5 letter word"
         value={guess}
         onChange={(event) => {
           setGuess(event.target.value.toUpperCase())

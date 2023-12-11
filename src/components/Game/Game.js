@@ -23,7 +23,7 @@ function Game() {
 
   return (
     <>
-      <Results guesses={guesses} />
+      <Results guesses={guesses} answer={answer} />
       <Form onAddGuess={handleAddGuess} />
     </>
   )

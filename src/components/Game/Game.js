@@ -6,6 +6,8 @@ import { WORDS } from '../../data'
 
 import Form from '../Form'
 import Results from '../Results'
+import WonBanner from '../WonBanner'
+import LostBanner from '../LostBanner'
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS)
@@ -37,6 +39,8 @@ function Game() {
     <>
       <Results guesses={guesses} answer={answer} />
       <Form gameStatus={status} onAddGuess={handleAddGuess} />
+      {status === 'won' && <WonBanner numOfGuesses={guesses.length} />}
+      {status === 'lost' && <LostBanner answer={answer} />}
     </>
   )
 }

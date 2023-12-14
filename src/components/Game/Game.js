@@ -1,7 +1,9 @@
 import React from 'react'
 
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
 import { sample } from '../../utils'
 import { WORDS } from '../../data'
+
 import Form from '../Form'
 import Results from '../Results'
 
@@ -11,6 +13,7 @@ const answer = sample(WORDS)
 console.info({ answer })
 
 function Game() {
+  const [status, setStatus] = React.useState('playing')
   const [guesses, setGuesses] = React.useState([])
 
   const handleAddGuess = (attempt) => {
@@ -18,13 +21,22 @@ function Game() {
       value: attempt,
       id: `${attempt}-${Date.now()}`,
     }
-    setGuesses([...guesses, newAttempt])
+
+    const nextGuesses = [...guesses, newAttempt]
+
+    setGuesses(nextGuesses)
+
+    if (attempt.toUpperCase() === answer) {
+      setStatus('won')
+    } else if (nextGuesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      setStatus('lost')
+    }
   }
 
   return (
     <>
       <Results guesses={guesses} answer={answer} />
-      <Form onAddGuess={handleAddGuess} />
+      <Form gameStatus={status} onAddGuess={handleAddGuess} />
     </>
   )
 }

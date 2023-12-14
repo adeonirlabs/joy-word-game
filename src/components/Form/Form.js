@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Form({ onAddGuess }) {
+function Form({ gameStatus, onAddGuess }) {
   const [attempt, setAttempt] = React.useState('')
 
   const handleSubmit = (e) => {
@@ -20,6 +20,7 @@ function Form({ onAddGuess }) {
         maxLength={5}
         pattern="[a-zA-Z]{5}"
         title="A 5 letter word"
+        disabled={gameStatus !== 'playing'}
         value={attempt}
         onChange={(event) => {
           setAttempt(event.target.value.toUpperCase())

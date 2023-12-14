@@ -15,6 +15,7 @@ const answer = sample(WORDS)
 console.info({ answer })
 
 function Game() {
+  const [answer, setAnswer] = React.useState(() => sample(WORDS))
   const [status, setStatus] = React.useState('playing')
   const [guesses, setGuesses] = React.useState([])
 
@@ -35,12 +36,23 @@ function Game() {
     }
   }
 
+  const handleRestart = () => {
+    const newAnswer = sample(WORDS)
+    setAnswer(newAnswer)
+    setStatus('playing')
+    setGuesses([])
+  }
+
   return (
     <>
       <Results guesses={guesses} answer={answer} />
       <Form gameStatus={status} onAddGuess={handleAddGuess} />
-      {status === 'won' && <WonBanner numOfGuesses={guesses.length} />}
-      {status === 'lost' && <LostBanner answer={answer} />}
+      {status === 'won' && (
+        <WonBanner numOfGuesses={guesses.length} onRestart={handleRestart} />
+      )}
+      {status === 'lost' && (
+        <LostBanner answer={answer} onRestart={handleRestart} />
+      )}
     </>
   )
 }
